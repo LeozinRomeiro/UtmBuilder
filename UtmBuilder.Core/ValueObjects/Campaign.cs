@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtmBuilder.Core.ValueObjects.Exceptions;
 
 namespace UtmBuilder.Core.ValueObjects
 {
@@ -25,12 +26,34 @@ namespace UtmBuilder.Core.ValueObjects
             Id = id;
             Term = term;
             Content = content;
+
+            InvalidCampaignException.ThrowIfNull(source, "Source invalido");
+            InvalidCampaignException.ThrowIfNull(medium, "Medium invalido");
+            InvalidCampaignException.ThrowIfNull(name, "Nome invalido");
         }
+        /// <summary>
+        /// O referenciador (por exemplo, google, newsletter)
+        /// </summary>
         public string Source { get;}
+        /// <summary>
+        /// Meio de marketing (por exemplo, cpc, banner, e-mail)
+        /// </summary>
         public string Medium { get;}
+        /// <summary>
+        /// Produto, código promocional ou slogan (por exemplo, spring_sale) É necessário um nome de campanha ou ID de campanha.
+        /// </summary>
         public string Name { get; }
+        /// <summary>
+        /// O ID da campanha de anúncios.
+        /// </summary>
         public string? Id { get; }
+        /// <summary>
+        /// Identificar as palavras-chave pagas
+        /// </summary>
         public string? Term { get; }
+        /// <summary>
+        /// Use para diferenciar anúncios
+        /// </summary>
         public string? Content { get; }
     }
 }

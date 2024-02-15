@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtmBuilder.Core.ValueObjects.Exceptions;
 
 namespace UtmBuilder.Core.ValueObjects
 {
@@ -16,6 +17,7 @@ namespace UtmBuilder.Core.ValueObjects
         public Url(string address)
         {
             Address = address;
+            InvalidUrlException.ThrowIfInvalid(address);
         }
         /// <summary>
         /// Endereço da URL 

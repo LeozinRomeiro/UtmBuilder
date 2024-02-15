@@ -9,6 +9,11 @@ namespace UtmBuilder.Core.Entities
 {
     public class Utm
     {
+        /// <summary>
+        /// Criar o Utm
+        /// </summary>
+        /// <param name="url">URL (WebSite link)</param>
+        /// <param name="campaign">Detalhes da campanha</param>
         public Utm(Url url, Campaign campaign)
         {
             Url = url;
@@ -23,5 +28,15 @@ namespace UtmBuilder.Core.Entities
         /// Detalhes da campanha
         /// </summary>
         public Campaign Campaign { get; set; }
+
+        public override string ToString()
+        {
+            var segments = new List<string>();
+            if (!string.IsNullOrEmpty(Campaign.Source) )
+            {
+
+            }
+            return $"{Url.Address}?{string.Join("&",segments)}";
+        }
     }
 }
