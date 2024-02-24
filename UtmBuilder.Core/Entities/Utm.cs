@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtmBuilder.Core.Extensions;
 using UtmBuilder.Core.ValueObjects;
 
 namespace UtmBuilder.Core.Entities
@@ -32,10 +33,12 @@ namespace UtmBuilder.Core.Entities
         public override string ToString()
         {
             var segments = new List<string>();
-            if (!string.IsNullOrEmpty(Campaign.Source) )
-            {
-
-            }
+            segments.AddIfNotNull("utm_sourne", Campaign.Source);
+            segments.AddIfNotNull("utm_medium", Campaign.Medium);
+            segments.AddIfNotNull("utm_campaign", Campaign.Name);
+            segments.AddIfNotNull("utm_id", Campaign.Id);
+            segments.AddIfNotNull("utm_term", Campaign.Term);
+            segments.AddIfNotNull("utm_content", Campaign.Content);
             return $"{Url.Address}?{string.Join("&",segments)}";
         }
     }
