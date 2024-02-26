@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UtmBuilder.Core.Extensions;
 using UtmBuilder.Core.ValueObjects;
+using UtmBuilder.Core.ValueObjects.Exceptions;
 
 namespace UtmBuilder.Core.Entities
 {
@@ -29,6 +30,21 @@ namespace UtmBuilder.Core.Entities
         /// Detalhes da campanha
         /// </summary>
         public Campaign Campaign { get; set; }
+        public static implicit operator string(Utm utm) => utm.ToString();
+        public static implicit operator Utm(string link)
+        {
+            if (string.IsNullOrEmpty(link))
+            {
+                throw new InvalidUrlException();
+            }
+
+            var url = new Url(link);
+            var segments = url.Address.Split('?');
+            if (segments.Length == 1) { throw new InvalidUrlException("Nenhum segmento reconhecido"); }
+
+
+            return utm;
+        }
 
         public override string ToString()
         {
