@@ -57,7 +57,7 @@ namespace UtmBuilder.Core.Entities
         public override string ToString()
         {
             var segments = new List<string>();
-            segments.AddIfNotNull("utm_sourne", Campaign.Source);
+            segments.AddIfNotNull("utm_source", Campaign.Source);
             segments.AddIfNotNull("utm_medium", Campaign.Medium);
             segments.AddIfNotNull("utm_campaign", Campaign.Name);
             segments.AddIfNotNull("utm_id", Campaign.Id);
