@@ -4,7 +4,7 @@ namespace UtmBuilder.Core.ValueObjects.Exceptions;
 
 public partial class InvalidUrlException : Exception
 {
-    private const string DefaultErrorMessage = "Invalid URL";
+    private const string DefaultErrorMessage = "URL invalida";
 
     public InvalidUrlException(string message = DefaultErrorMessage)
         : base(message)
